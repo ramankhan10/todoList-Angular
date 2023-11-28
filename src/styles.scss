@@ -1,1 +1,86 @@
 /* You can add global styles to this file, and also import other style files */
+
+body {
+  background-image: url("./assets/46474992.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  direction: rtl;
+}
+main {
+  min-height: 100vh;
+}
+
+.drop-shadow {
+  -webkit-box-shadow: 0px 0px 33px -10px rgba(71, 114, 254, 0.3);
+  -moz-box-shadow: 0px 0px 33px -10px rgba(71, 114, 254, 0.3);
+  box-shadow: 0px 0px 33px -10px rgba(71, 114, 254, 0.3);
+}
+
+.drop-shadow-footer {
+  -webkit-box-shadow: 0px 0px 33px -10px rgba(71, 114, 254, 0.3);
+  -moz-box-shadow: 0px 0px 33px -10px rgba(71, 114, 254, 0.3);
+  box-shadow: 0px 0px 33px -10px rgba(71, 114, 254, 0.3);
+}
+
+input[type="text"] {
+  background-color: #fefefe;
+  height: 60px;
+  padding-left: 20px;
+}
+
+.btn-todo {
+  height: 60px !important;
+  background-color: #e9eeff !important;
+  color: #4772fe !important;
+  border: none !important;
+  width: 80% !important;
+}
+
+.border-danger {
+  border: 1px solid red !important;
+}
+
+.todo-list {
+  margin-top: 50px;
+}
+
+.todo-list .card {
+  border: none;
+  margin-top: 5px;
+  background-color: #ffffff;
+}
+small {
+  position: absolute;
+
+  left: 4%;
+}
+
+.todo-tools i {
+  margin: 0px 5px;
+  cursor: pointer;
+}
+
+.todo-list .card:hover .todo-tools {
+  display: inline;
+}
+
+i {
+  margin-right: 20px;
+}
+
+hr {
+  display: block;
+  margin-top: -8px;
+  margin-left: 30px;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+  background-color: black;
+}
+@media (max-width: 767.36px) {
+  .btn-todo {
+    margin-top: 15px;
+    width: 30% !important;
+  }
+}

@@ -1,0 +1,70 @@
+.todo-list {
+  margin-top: 50px;
+}
+
+.todo-list .card {
+  border: none;
+  margin-top: 5px;
+  background-color: #ffffff;
+}
+
+.todo-tools {
+  display: none;
+}
+
+.todo-tools i {
+  margin: 0px 5px;
+  cursor: pointer;
+}
+
+.todo-tools:hover {
+  display: inline;
+}
+
+.todo-list .card {
+  cursor: pointer;
+  height: 70px;
+  width: 100%;
+}
+.todo-item {
+  padding-bottom: 9px;
+}
+div .distance {
+  width: 45%;
+}
+div.drop-shadow {
+  display: flex;
+  flex-direction: row;
+}
+div.drop-shadow > div:nth-child(odd) {
+  padding-top: 24px;
+}
+.todo-status:hover {
+  border-radius: 4px;
+  font-size: 18px;
+}
+
+.todo-status {
+  padding-left: 25px;
+}
+
+.todo-list .card:hover .todo-tools {
+  display: flex;
+  text-align: start;
+  align-self: flex-start;
+  align-items: start;
+}
+
+i {
+  margin-right: 20px;
+}
+
+hr {
+  display: block;
+  margin-top: -8px;
+  margin-left: 30px;
+  margin-right: auto;
+  border-style: inset;
+  border-width: 1px;
+  background-color: black;
+}
