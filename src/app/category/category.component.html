@@ -1,22 +1,22 @@
 <div class="row justify-content-center md-3">
   <div class="col-md-4 text-center">
     <h1>وظایف - TODOS</h1>
-    <p class="text-info">
-      اینجا میتونید وظایف و کارهاتون رو اضافه و مدیریت کنید
-    </p>
+    <p class="text-info">اینجا میتونید دسته بندی رو اضافه و مدیریت کنید</p>
   </div>
 </div>
 
 <div class="row">
   <div class="col-md-12">
-    <form class="form-inline">
+    <form class="form-inline" #form="ngForm" (ngSubmit)="onSubmit(form)">
       <div class="row">
         <div class="col-md-10 form-group">
           <input
             type="text"
             placeholder="وظایف خودتون رو اینجا اضاف کنید..."
-            name="todoText"
+            name="categoryName"
             class="form-control drop-shadow"
+            ngModel
+            required
           />
         </div>
         <div class="col-md-2">
@@ -36,7 +36,7 @@
   <div class="col-md-3" *ngFor="let category of categories">
     <div
       class="card drop-shadow"
-      [style.border-left-color]="category.data.ColorCode"
+      [style.border-left-color]="category.ColorCode"
     >
       <div class="card-body">
         <div class="clearfix">
@@ -47,11 +47,9 @@
         </div>
 
         <div class="todo-content">
-          <h3 style="color: blueviolet">{{ category.data.Category }}</h3>
+          <h3 style="color: blueviolet">{{ category.Category }}</h3>
         </div>
-        <span class="badge badge-danger"
-          >{{ category.data.todoCount }} - Todos</span
-        >
+        <span class="badge badge-danger">{{ category.todoCount }} - Todos</span>
       </div>
     </div>
   </div>
