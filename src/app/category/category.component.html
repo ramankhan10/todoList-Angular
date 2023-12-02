@@ -33,8 +33,11 @@
 </div>
 
 <div class="row categories-list">
-  <div class="col-md-3">
-    <div class="card drop-shadow" style="border-left-color: blueviolet">
+  <div class="col-md-3" *ngFor="let category of categories">
+    <div
+      class="card drop-shadow"
+      [style.border-left-color]="category.data.ColorCode"
+    >
       <div class="card-body">
         <div class="clearfix">
           <div class="float-left"></div>
@@ -44,128 +47,11 @@
         </div>
 
         <div class="todo-content">
-          <h3 style="color: blueviolet">عنوان دسته بندی</h3>
+          <h3 style="color: blueviolet">{{ category.data.Category }}</h3>
         </div>
-        <span class="badge badge-danger">12 - Todos</span>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card drop-shadow" style="border-left-color: blueviolet">
-      <div class="card-body">
-        <div class="clearfix">
-          <div class="float-left"></div>
-          <div class="float-right cat-tools">
-            <small><i class="fas fa-trash text-danger"></i></small>
-          </div>
-        </div>
-
-        <div class="todo-content">
-          <h3 style="color: blueviolet">عنوان دسته بندی</h3>
-        </div>
-        <span class="badge badge-danger">12 - Todos</span>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card drop-shadow" style="border-left-color: blueviolet">
-      <div class="card-body">
-        <div class="clearfix">
-          <div class="float-left"></div>
-          <div class="float-right cat-tools">
-            <small><i class="fas fa-trash text-danger"></i></small>
-          </div>
-        </div>
-
-        <div class="todo-content">
-          <h3 style="color: blueviolet">عنوان دسته بندی</h3>
-        </div>
-        <span class="badge badge-danger">12 - Todos</span>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card drop-shadow" style="border-left-color: blueviolet">
-      <div class="card-body">
-        <div class="clearfix">
-          <div class="float-left"></div>
-          <div class="float-right cat-tools">
-            <small><i class="fas fa-trash text-danger"></i></small>
-          </div>
-        </div>
-
-        <div class="todo-content">
-          <h3 style="color: blueviolet">عنوان دسته بندی</h3>
-        </div>
-        <span class="badge badge-danger">12 - Todos</span>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card drop-shadow" style="border-left-color: blueviolet">
-      <div class="card-body">
-        <div class="clearfix">
-          <div class="float-left"></div>
-          <div class="float-right cat-tools">
-            <small><i class="fas fa-trash text-danger"></i></small>
-          </div>
-        </div>
-
-        <div class="todo-content">
-          <h3 style="color: blueviolet">عنوان دسته بندی</h3>
-        </div>
-        <span class="badge badge-danger">12 - Todos</span>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card drop-shadow" style="border-left-color: blueviolet">
-      <div class="card-body">
-        <div class="clearfix">
-          <div class="float-left"></div>
-          <div class="float-right cat-tools">
-            <small><i class="fas fa-trash text-danger"></i></small>
-          </div>
-        </div>
-
-        <div class="todo-content">
-          <h3 style="color: blueviolet">عنوان دسته بندی</h3>
-        </div>
-        <span class="badge badge-danger">12 - Todos</span>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card drop-shadow" style="border-left-color: blueviolet">
-      <div class="card-body">
-        <div class="clearfix">
-          <div class="float-left"></div>
-          <div class="float-right cat-tools">
-            <small><i class="fas fa-trash text-danger"></i></small>
-          </div>
-        </div>
-
-        <div class="todo-content">
-          <h3 style="color: blueviolet">عنوان دسته بندی</h3>
-        </div>
-        <span class="badge badge-danger">12 - Todos</span>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="card drop-shadow" style="border-left-color: blueviolet">
-      <div class="card-body">
-        <div class="clearfix">
-          <div class="float-left"></div>
-          <div class="float-right cat-tools">
-            <small><i class="fas fa-trash text-danger"></i></small>
-          </div>
-        </div>
-
-        <div class="todo-content">
-          <h3 style="color: blueviolet">عنوان دسته بندی</h3>
-        </div>
-        <span class="badge badge-danger">12 - Todos</span>
+        <span class="badge badge-danger"
+          >{{ category.data.todoCount }} - Todos</span
+        >
       </div>
     </div>
   </div>
