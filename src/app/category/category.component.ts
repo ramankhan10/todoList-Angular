@@ -12,7 +12,11 @@ export class CategoryComponent implements OnInit {
   constructor(private categoryService: CategoryService) {}
 
   categories: Array<CategoryModel> = [];
+  categoryName: string = '';
+  isAdd: boolean = true;
+  categoryId: string = '';
 
+  
   ngOnInit(): void {
     this.categoryService.fetchCategories().subscribe((categories) => {
       this.categories = categories;
@@ -21,6 +25,29 @@ export class CategoryComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     const newCategoryName = form.value.categoryName;
-    this.categoryService.addCategory(newCategoryName);
+    if (this.isAdd) {
+      this.categoryService.addCategory(newCategoryName);
+    } else {
+      this.categoryService.editCategory(this.categoryId, newCategoryName);
+    }
+    form.reset();
+  }
+
+  onDragStart(event: DragEvent, categoryId: any) {
+    event.dataTransfer?.setData('text/plain', categoryId);
+  }
+
+  onDrop(event: DragEvent) {
+    const categoryId = event.dataTransfer?.getData('text/plain');
+    const category = this.categories.filter((category) => {
+      return category.id == categoryId;
+    });
+    this.categoryId = categoryId!;
+    this.categoryName = category[0].Category;
+    this.isAdd = false;
+  }
+
+  onDragOver(event: Event) {
+    event.preventDefault();
   }
 }

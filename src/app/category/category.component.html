@@ -17,6 +17,9 @@
             class="form-control drop-shadow"
             ngModel
             required
+            (drop)="onDrop($event)"
+            (dragover)="onDragOver($event)"
+            [(ngModel)]="categoryName"
           />
         </div>
         <div class="col-md-2">
@@ -24,7 +27,7 @@
             type="submit"
             class="btn btn-primary col-md-2 btn-todo btn-block drop-shadow"
           >
-            افزودن
+            {{ isAdd == true ? "افزودن" : "ویرایش" }}
           </button>
         </div>
       </div>
@@ -33,7 +36,12 @@
 </div>
 
 <div class="row categories-list">
-  <div class="col-md-3" *ngFor="let category of categories">
+  <div
+    class="col-md-3"
+    *ngFor="let category of categories"
+    draggable="true"
+    (dragstart)="onDragStart($event, category.id)"
+  >
     <div
       class="card drop-shadow"
       [style.border-left-color]="category.ColorCode"

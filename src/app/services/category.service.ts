@@ -39,6 +39,12 @@ export class CategoryService {
     this.fireService.collection('categories').add(newCategory);
   }
 
+  editCategory(categoryId: string, categoryName: string) {
+    this.fireService
+      .doc('categories/' + categoryId)
+      .update({ Category: categoryName });
+  }
+
   private colorGenerator(): string {
     const colorsArray = [
       '#e7845e',
