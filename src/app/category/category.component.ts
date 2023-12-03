@@ -16,7 +16,6 @@ export class CategoryComponent implements OnInit {
   isAdd: boolean = true;
   categoryId: string = '';
 
-  
   ngOnInit(): void {
     this.categoryService.fetchCategories().subscribe((categories) => {
       this.categories = categories;
@@ -29,6 +28,7 @@ export class CategoryComponent implements OnInit {
       this.categoryService.addCategory(newCategoryName);
     } else {
       this.categoryService.editCategory(this.categoryId, newCategoryName);
+      this.isAdd = true;
     }
     form.reset();
   }
@@ -50,4 +50,7 @@ export class CategoryComponent implements OnInit {
   onDragOver(event: Event) {
     event.preventDefault();
   }
+
+  onDelete(categoryId: string) {
+this.categoryService.deleteCategory(categoryId)  }
 }

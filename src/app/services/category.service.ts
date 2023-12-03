@@ -45,6 +45,10 @@ export class CategoryService {
       .update({ Category: categoryName });
   }
 
+  deleteCategory(categoryId: string) {
+    this.fireService.doc('categories/' + categoryId).delete();
+  }
+
   private colorGenerator(): string {
     const colorsArray = [
       '#e7845e',

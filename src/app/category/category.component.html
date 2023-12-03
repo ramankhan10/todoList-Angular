@@ -15,17 +15,20 @@
             placeholder="وظایف خودتون رو اینجا اضاف کنید..."
             name="categoryName"
             class="form-control drop-shadow"
+            [ngClass]="form.invalid && form.touched ? 'invalid' : ''"
             ngModel
             required
             (drop)="onDrop($event)"
             (dragover)="onDragOver($event)"
             [(ngModel)]="categoryName"
+
           />
         </div>
         <div class="col-md-2">
           <button
             type="submit"
             class="btn btn-primary col-md-2 btn-todo btn-block drop-shadow"
+            [disabled]="form.invalid"
           >
             {{ isAdd == true ? "افزودن" : "ویرایش" }}
           </button>
@@ -50,7 +53,12 @@
         <div class="clearfix">
           <div class="float-left"></div>
           <div class="float-right cat-tools">
-            <small><i class="fas fa-trash text-danger"></i></small>
+            <small
+              ><i
+                class="fas fa-trash text-danger"
+                (click)="onDelete(category.id!)"
+              ></i
+            ></small>
           </div>
         </div>
 
