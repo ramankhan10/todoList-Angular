@@ -35,51 +35,18 @@
 <br />
 
 <div class="row justify-content-center todo-list">
-  <div class="col-md-7 todo-item">
+  <div class="col-md-7 todo-item" *ngFor="let todo of todos">
     <div class="card drop-shadow" style="display: flex; flex-direction: row">
       <div class="text-secondary">
-        <!-- <i class="fas fa-check text-success todo-status"></i> -->
-        <i class="far fa-times-circle text-danger todo-status"></i>
-        انجام کار های روزمره
+         <i class="fas fa-check text-success todo-status" *ngIf="todo.isCompleted"></i>
+        <i class="far fa-times-circle text-danger todo-status" *ngIf="!todo.isCompleted"></i>
+        {{ todo.title }}
       </div>
       <div class="distance"></div>
       <div class="todo-tools">
         <small>
           <i class="fas fa-pencil-alt text-warning"></i>
-          <i class="fas fa-trash text-danger"></i>
-        </small>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-7 todo-item">
-    <div class="card drop-shadow">
-      <div class="text-secondary">
-        <i class="far fa-check-circle text-success todo-status"></i>
-
-        انجام کار های روزمره
-      </div>
-      <div class="distance"></div>
-      <div class="todo-tools">
-        <small>
-          <i class="fas fa-pencil-alt text-warning"></i>
-          <i class="fas fa-trash text-danger"></i>
-        </small>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-7 todo-item">
-    <div class="card drop-shadow" style="display: flex; flex-direction: row">
-      <div class="text-secondary" style="padding-top: 24px">
-        <!-- <i class="fas fa-check text-success todo-status"></i> -->
-        <i class="far fa-times-circle text-danger todo-status"></i>
-        انجام کار های روزمره
-      </div>
-      <div class="distance"></div>
-      <div class="todo-tools" style="padding-top: 24px">
-        <small>
-          <i class="fas fa-pencil-alt text-warning"></i>
-          <i class="fas fa-trash text-danger"></i>
+          <i class="fas fa-trash text-danger" (click)="onDelete(todo.id!)"></i>
         </small>
       </div>
     </div>

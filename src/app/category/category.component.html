@@ -21,7 +21,6 @@
             (drop)="onDrop($event)"
             (dragover)="onDragOver($event)"
             [(ngModel)]="categoryName"
-
           />
         </div>
         <div class="col-md-2">
@@ -62,7 +61,7 @@
           </div>
         </div>
 
-        <div class="todo-content">
+        <div class="todo-content" [routerLink]="['todo', category.id]">
           <h3 style="color: blueviolet">{{ category.Category }}</h3>
         </div>
         <span class="badge badge-danger">{{ category.todoCount }} - Todos</span>
