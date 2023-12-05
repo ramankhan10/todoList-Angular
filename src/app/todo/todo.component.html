@@ -41,11 +41,11 @@
     <div class="card drop-shadow" style="display: flex; flex-direction: row">
       <div class="text-secondary">
         <i
-          class="fas fa-check text-success todo-status"
+          class="fas fa-check text-success todo-status" (click)="uncompleteTodo(todo.id!)"
           *ngIf="todo.isCompleted"
         ></i>
         <i
-          class="far fa-times-circle text-danger todo-status"
+          class="far fa-times-circle text-danger todo-status" (click)="completeTodo(todo.id!)"
           *ngIf="!todo.isCompleted"
         ></i>
         {{ todo.title }}
@@ -53,7 +53,7 @@
       <div class="distance"></div>
       <div class="todo-tools">
         <small>
-          <i class="fas fa-pencil-alt text-warning"></i>
+          <i class="fas fa-pencil-alt text-warning"(click)="onEdit(todo.id!,todo.title)"></i>
           <i
             class="fas fa-trash text-danger"
             (click)="onDelete(todo.id!, this.categoryId)"

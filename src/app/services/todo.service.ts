@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { map } from 'rxjs';
 import { TodoModel } from '../models/todo.model';
-import * as firebase from 'firebase/compat';
+import { increment } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -22,21 +22,25 @@ export class TodoService {
       .doc(categoryId)
       .collection('todos')
       .add(newTodo)
-      .then((res) => {
+      .then(() => {
         this.fireService
-          .collection('categories/' + categoryId)
-          .doc()
-          .update({ todoCount: 0 });
+          .collection('categories/')
+          .doc(categoryId)
+          .update({ todoCount: increment(1) });
       });
   }
-
-  // editTodo() {}
 
   deleteTodo(todoId: string, categoryId: string) {
     return this.fireService
       .collection('categories/' + categoryId + '/todos/')
       .doc(todoId)
-      .delete();
+      .delete()
+      .then(() => {
+        this.fireService
+          .collection('categories/')
+          .doc(categoryId)
+          .update({ todoCount: increment(-1) });
+      });
   }
 
   fetchTodos(categoryId: string) {
@@ -63,5 +67,27 @@ export class TodoService {
 
   fetchTodoById(todoId: number) {}
 
-  editTodo() {}
+  editTodo(categoryId: string, todoId: string, newTitle: string) {
+    const todoCollction = 'categories/' + categoryId + '/todos/';
+    this.fireService
+      .collection(todoCollction)
+      .doc(todoId)
+      .update({ title: newTitle });
+  }
+
+  markComplete(categoryId: string, todoId: string) {
+    const todoCollction = 'categories/' + categoryId + '/todos/';
+    this.fireService
+      .collection(todoCollction)
+      .doc(todoId)
+      .update({ isCompleted: true });
+  }
+
+  markUnComplete(categoryId: string, todoId: string) {
+    const todoCollction = 'categories/' + categoryId + '/todos/';
+    this.fireService
+      .collection(todoCollction)
+      .doc(todoId)
+      .update({ isCompleted: false });
+  }
 }
