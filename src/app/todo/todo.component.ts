@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TodoService } from '../services/todo.service';
 import { TodoModel } from '../models/todo.model';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
@@ -10,6 +11,8 @@ import { TodoModel } from '../models/todo.model';
 export class TodoComponent implements OnInit {
   categoryId: string = '';
   todos: Array<TodoModel> = [];
+  isAddOrEdit: boolean = true;
+  todoName: string = '';
 
   constructor(
     private activatedRout: ActivatedRoute,
@@ -23,7 +26,19 @@ export class TodoComponent implements OnInit {
     });
   }
 
-  onDelete(todoId: string) {
-    this.todoService.deleteTodo(todoId);
+  onSubmit(form : NgForm) {
+    const todoName = form.value.todoName
+    if (this.isAddOrEdit) {
+      this.todoService.createTodo(todoName,this.categoryId);
+    } else {
+      // this.todoService.editTodo(this.categoryId, newCategoryName);
+      this.isAddOrEdit = true;
+    }
+    form.reset();
+  }
+
+
+  onDelete(todoId: string, categoryId: string) {
+    this.todoService.deleteTodo(todoId, categoryId);
   }
 }

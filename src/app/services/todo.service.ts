@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { map } from 'rxjs';
-import { CategoryModel } from '../models/category.model';
 import { TodoModel } from '../models/todo.model';
+import * as firebase from 'firebase/compat';
 
 @Injectable({
   providedIn: 'root',
@@ -10,17 +10,33 @@ import { TodoModel } from '../models/todo.model';
 export class TodoService {
   constructor(private fireService: AngularFirestore) {}
 
-  createTodo(todo: any) {
-    todo.id = this.fireService.createId();
-    return this.fireService.collection('todos').add(todo);
+  createTodo(todoName: string, categoryId: string) {
+    const id = this.fireService.createId();
+    const newTodo: TodoModel = {
+      id: id,
+      title: todoName,
+      isCompleted: false,
+    };
+    this.fireService
+      .collection('categories')
+      .doc(categoryId)
+      .collection('todos')
+      .add(newTodo)
+      .then((res) => {
+        this.fireService
+          .collection('categories/' + categoryId)
+          .doc()
+          .update({ todoCount: 0 });
+      });
   }
 
-  deleteTodo(todoId: string) {
-    this.fireService
-      .collection('todos')
+  // editTodo() {}
+
+  deleteTodo(todoId: string, categoryId: string) {
+    return this.fireService
+      .collection('categories/' + categoryId + '/todos/')
       .doc(todoId)
-      .delete()
-      .then((res) => {});
+      .delete();
   }
 
   fetchTodos(categoryId: string) {
