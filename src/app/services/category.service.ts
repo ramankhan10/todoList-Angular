@@ -2,12 +2,16 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Observable, map } from 'rxjs';
 import { CategoryModel } from '../models/category.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CategoryService {
-  constructor(private fireService: AngularFirestore) {}
+  constructor(
+    private fireService: AngularFirestore,
+    private toastrService: ToastrService
+  ) {}
 
   fetchCategories(): Observable<CategoryModel[]> {
     return this.fireService
@@ -36,7 +40,14 @@ export class CategoryService {
       ColorCode: this.colorGenerator(),
       todoCount: 0,
     };
-    this.fireService.collection('categories').add(newCategory);
+    this.fireService
+      .collection('categories')
+      .add(newCategory)
+      .then(() => {
+        {
+          this.toastrService.success('دسته بندی جدید با موفقیت اضافه شد.');
+        }
+      });
   }
 
   editCategory(categoryId: string, categoryName: string) {
@@ -46,7 +57,12 @@ export class CategoryService {
   }
 
   deleteCategory(categoryId: string) {
-    this.fireService.doc('categories/' + categoryId).delete();
+    this.fireService
+      .doc('categories/' + categoryId)
+      .delete()
+      .then(() => {
+        this.toastrService.info('دسته بندی حذف شد!');
+      });
   }
 
   private colorGenerator(): string {
